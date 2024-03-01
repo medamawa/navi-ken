@@ -13,7 +13,7 @@ def generate():
                 break
             yield data
 
-@app.route('http://localhost:5000 ')
+@app.route('/navi-ken-video')
 def index():
     # 動画ストリームをレスポンスとして返す
     return Response(generate(), mimetype='video/x-msvideo')
