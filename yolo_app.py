@@ -3,7 +3,11 @@ from ultralytics import YOLO
 
 # カメラのキャプチャを開始
 cap = cv2.VideoCapture(0)
-# cap = cv2.VideoCapture('data/sample2.MOV')
+#cap = cv2.VideoCapture('data/sample2.MOV')
+
+# 動画ストリームの設定
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
 
 # モデルのロード
 model = YOLO("yolov8n-seg.pt")
@@ -34,12 +38,16 @@ while True:
             if (area > 0.5) and (id == 0):
                 area_flg = True
 
+    # フレームを動画ストリームに書き込む
+    out.write(frame)
+
     # キー入力を待つ
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# キャプチャを解放する
+# キャプチャと動画ストリームを解放する
 cap.release()
+out.release()
 
 # ウィンドウをすべて閉じる
 cv2.destroyAllWindows()
