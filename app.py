@@ -13,7 +13,7 @@ def generate():
                 break
             yield data
 
-@app.route('/')
+@app.route('http://localhost:5000 ')
 def index():
     # 動画ストリームをレスポンスとして返す
     return Response(generate(), mimetype='video/x-msvideo')
