@@ -1,7 +1,6 @@
 import cv2
 from ultralytics import YOLO
 import numpy as np
-import os
 
 # カメラのキャプチャを開始
 cap = cv2.VideoCapture(0)
@@ -31,7 +30,6 @@ def generate_frames():
             red_img = cv2.resize(red_img, (frame.shape[1], frame.shape[0]))
             frame = cv2.addWeighted(frame, alpha, red_img, 1 - alpha, 0)
             cv2.putText(frame, 'WARNING!', (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 0, 255), 15)
-            os.system('play -n synth %s sin %s' % (10/1000, 500))
         else:
             cv2.putText(frame, 'SAFE', (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 255, 0), 15)
         
