@@ -1,6 +1,6 @@
 # navi-ken
 
-## 実行
+## Execute
 
 ```
 set FLASK_APP=app.py
